@@ -6,9 +6,11 @@ import jakarta.persistence.*;
 public class UserHobby {
 
     @Id
-    @Column(name = "HOBBY_ID", nullable = false)
-    private String hobbyId;
+//    @ManyToOne
+    @JoinColumn(name = "HOBBY_ID", referencedColumnName = "HOBBY_ID", nullable = false)
+    private String hobby;  // Hobby 엔티티와 연결
 
+//    @Id
     @ManyToOne
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = false)
     private User user;  // User 엔티티와 다대일 관계
@@ -17,18 +19,18 @@ public class UserHobby {
     public UserHobby() {}
 
     // 전체 필드를 받는 생성자
-    public UserHobby(String hobbyId, User user) {
-        this.hobbyId = hobbyId;
+    public UserHobby(Hobby hobby, User user) {
+        this.hobby = String.valueOf(hobby);
         this.user = user;
     }
 
     // Getter and Setter methods
-    public String getHobbyId() {
-        return hobbyId;
+    public String getHobby() {
+        return hobby;
     }
 
-    public void setHobbyId(String hobbyId) {
-        this.hobbyId = hobbyId;
+    public void setHobby(String hobby) {
+        this.hobby = hobby;
     }
 
     public User getUser() {

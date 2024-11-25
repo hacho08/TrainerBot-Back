@@ -2,6 +2,7 @@ package com.smokedcorn.trainerbot.domain;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="WORKOUT_DETAIL")
 public class WorkoutDetail {
 
     @Id
@@ -22,9 +23,9 @@ public class WorkoutDetail {
     public WorkoutDetail() {}
 
     // 전체 필드를 받는 생성자
-    public WorkoutDetail(String workoutId, Routines routine, String workoutName, Integer setCount, Integer restTime, Integer isCount, Integer workoutCount, Integer workoutOrder) {
+    public WorkoutDetail(String workoutId, Routines routines, String workoutName, Integer setCount, Integer restTime, Integer isCount, Integer workoutCount, Integer workoutOrder) {
         this.workoutId = workoutId;
-        this.routine = routine;
+        this.routine = routines;
         this.workoutName = workoutName;
         this.setCount = setCount;
         this.restTime = restTime;

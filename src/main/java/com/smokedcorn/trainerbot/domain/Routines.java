@@ -1,15 +1,17 @@
 package com.smokedcorn.trainerbot.domain;
 
 import jakarta.persistence.*;
-import java.util.List;  // List 인터페이스 임포트
+
 import java.util.Date;
-import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Entity
+@Table(name="ROUTINES")
 public class Routines {
 
     @Id
+    @Column(name = "ROUTINE_ID", nullable = false, length = 20)
     private String routineId;
 
     @ManyToOne

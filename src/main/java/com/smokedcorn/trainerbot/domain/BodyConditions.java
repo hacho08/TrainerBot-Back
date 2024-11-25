@@ -1,7 +1,9 @@
 package com.smokedcorn.trainerbot.domain;
 
-import jakarta.persistence.*;
-import java.util.List;  // List 인터페이스 임포트
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 
 @Entity
@@ -29,8 +31,8 @@ public class BodyConditions {
     }
 
 
-    @OneToMany(mappedBy = "bCondId") // UserBodyCondition에서 bCondId 필드와 매핑
-    private List<UserBodyConditions> users;
+//    @OneToMany(mappedBy = "bodyConditions") // UserBodyCondition에서 bCondId 필드와 매핑
+//    private List<UserBodyConditions> users;
 
 
     // Getter and Setter methods

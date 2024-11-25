@@ -13,6 +13,7 @@ public class UserBodyConditions {
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = false)
     private User user;
 
+
     // 기본 생성자
     public UserBodyConditions() {}
 
@@ -38,6 +39,7 @@ public class UserBodyConditions {
     public void setUser(User user) {
         this.user = user;
     }
+
 
     // toString(), equals(), hashCode() 등의 메서드도 필요에 따라 추가할 수 있습니다.
 }

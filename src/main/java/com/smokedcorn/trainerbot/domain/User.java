@@ -52,6 +52,12 @@ public class User {
     @OneToMany(mappedBy = "user")  // User와 Routine 사이의 관계를 매핑
     private List<Routines> routines;
 
+    @OneToMany(mappedBy = "user")  // User와 Booking 사이의 관계를 매핑
+    private List<Booking> bookings;
+
+    public User(String userId) {
+    }
+
 
     public String getUserId() {
         return userId;
