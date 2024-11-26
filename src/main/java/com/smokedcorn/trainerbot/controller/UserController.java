@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
+@CrossOrigin(origins = "http://localhost:8090")  // 요청하는 도메인 허용
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -19,36 +18,22 @@ public class UserController {
         this.userService = userService;
     }
 
-    // GET: 사용자 조회 (ID로 조회)
+    // POST: 사용자 이름 추가
+    @PostMapping
+    public ResponseEntity<User> addUser(@RequestBody User user) {
+        User createdUser = userService.addUser(user);  // 사용자 이름 저장
+        return ResponseEntity.ok(createdUser);  // 저장된 사용자 반환
+    }
+
+    // GET: 사용자 이름 조회
     @GetMapping("/{userId}")
-    public ResponseEntity<User> getUserById(@PathVariable String userId) {
-        Optional<User> user = userService.getUserById(userId);
-        if (user.isPresent()) {
-            return ResponseEntity.ok(user.get());
+    public ResponseEntity<User> getUserById(@PathVariable Long userId) {
+        User user = userService.getUserById(userId);
+        if (user != null) {
+            return ResponseEntity.ok(user);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
-
-    // POST: 새로운 사용자 추가
-    @PostMapping
-    public ResponseEntity<User> addUser(@RequestBody User user) {
-        User savedUser = userService.addUser(user);
-        return ResponseEntity.ok(savedUser);
     }
 
-    // PUT: 사용자 수정
-    @PutMapping("/{userId}")
-    public ResponseEntity<User> updateUser(@PathVariable String userId, @RequestBody User user) {
-        user.setUserId(userId);  // userId가 변경되지 않도록 하기 위해 설정
-        User updatedUser = userService.updateUser(user);
-        return ResponseEntity.ok(updatedUser);
-    }
-
-    // DELETE: 사용자 삭제
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable String userId) {
-        userService.deleteUser(userId);
-        return ResponseEntity.noContent().build();
-    }
-}
