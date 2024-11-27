@@ -2,7 +2,7 @@ package com.smokedcorn.trainerbot.domain;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -18,16 +18,20 @@ public class Routines {
     @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = false)
     private User user;  // USER_ID와 연결
 
+    @Column(name = "CONDITION", nullable = false, length = 20)
     private String condition;
+
+    @Column(name = "TARGET", nullable = false, length = 10)
     private String target;
 
-    private Date createdAt;
+    @Column(name = "CREATED_AT")
+    private LocalDateTime createdAt;
 
     // 기본 생성자
     public Routines() {}
 
     // 전체 필드를 받는 생성자
-    public Routines(String routineId, User user, String condition, String target, Date createdAt) {
+    public Routines(String routineId, User user, String condition, String target, LocalDateTime createdAt) {
         this.routineId = routineId;
         this.user = user;
         this.condition = condition;
@@ -72,12 +76,15 @@ public class Routines {
         this.target = target;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public void setUserId(String userId) {
     }
 
     // toString(), equals(), hashCode() 등의 메서드도 필요에 따라 추가할 수 있습니다.

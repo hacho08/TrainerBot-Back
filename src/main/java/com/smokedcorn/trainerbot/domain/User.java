@@ -31,6 +31,16 @@ public class User {
     @Column(name = "CREATED_AT")
     private LocalDateTime createdAt;
 
+    // Transient fields for joined data
+    @Transient
+    @Column(name = "B_COND_NAME", nullable = false, length = 50) // Transient에 @Column은 무의미하지만 명시적으로 적을 수도 있음
+    private String bCondName;
+
+    @Transient
+    @Column(name = "HOBBY_NAME", nullable = false, length = 70)
+    private String hobbyName;
+
+
     // 기본 생성자
     public User() {
     }
@@ -116,5 +126,21 @@ public class User {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getBCondName() {
+        return bCondName;
+    }
+
+    public void setBCondName(String bCondName) {
+        this.bCondName = bCondName;
+    }
+
+    public String getHobbyName() {
+        return hobbyName;
+    }
+
+    public void setHobbyName(String hobbyName) {
+        this.hobbyName = hobbyName;
     }
 }

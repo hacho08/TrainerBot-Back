@@ -14,10 +14,10 @@ public class BodyConditions {
     @Column(name = "B_COND_ID", nullable = false, length = 20)
     private String bCondId;
 
-    @Column(name = "B_COND_NAME", nullable = false, length = 5)
+    @Column(name = "B_COND_NAME", nullable = false, length = 50)
     private String bCondName;
 
-    @Column(name = "B_COND_DESCRIPTION", nullable = true, length = 100)
+    @Column(name = "B_COND_DESCRIPTION", nullable = true, length = 200)
     private String bCondDescription;
 
     // 기본 생성자

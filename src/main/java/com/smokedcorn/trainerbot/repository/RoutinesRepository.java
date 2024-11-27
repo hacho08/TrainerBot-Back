@@ -1,10 +1,13 @@
 package com.smokedcorn.trainerbot.repository;
-import java.util.List;
-import java.util.Optional;
 
 import com.smokedcorn.trainerbot.domain.Routines;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
+
+@Repository
 public interface RoutinesRepository extends JpaRepository<Routines, String> {
     // 기본적인 CRUD 메서드는 JpaRepository가 자동으로 제공합니다.
 

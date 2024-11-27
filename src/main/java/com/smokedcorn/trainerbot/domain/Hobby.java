@@ -10,7 +10,7 @@ public class Hobby {
     @Column(name = "HOBBY_ID", nullable = false, length = 20)
     private String hobbyId;
 
-    @Column(name = "HOBBY_NAME", nullable = false, length = 10)
+    @Column(name = "HOBBY_NAME", nullable = false, length = 70)
     private String hobbyName;
 
     // 기본 생성자
