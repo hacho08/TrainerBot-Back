@@ -5,7 +5,6 @@ import com.smokedcorn.trainerbot.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,7 +22,6 @@ public class BookingService {
         return bookingRepository.findById(bookingId);
     }
 
-    // 사용자의 모든 예약 조회
 //    public List<Booking> getBookingsByUserId(String userId) {
 //        return bookingRepository.findByUserUserId(userId);
 //    }
@@ -42,4 +40,5 @@ public class BookingService {
     public void deleteBooking(String bookingId) {
         bookingRepository.deleteById(bookingId);
     }
+
 }

@@ -1,8 +1,10 @@
 package com.smokedcorn.trainerbot.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity  // 해당 클래스는 JPA 엔티티임을 나타냅니다.
@@ -33,12 +35,14 @@ public class User {
 
     // Transient fields for joined data
     @Transient
-    @Column(name = "B_COND_NAME", nullable = false, length = 50) // Transient에 @Column은 무의미하지만 명시적으로 적을 수도 있음
-    private String bCondName;
+    @JsonProperty("B_COND_NAME")
+//    @Column(name = "B_COND_NAME", nullable = false, length = 50) // Transient에 @Column은 무의미하지만 명시적으로 적을 수도 있음
+    private List<Integer> bodyConditionIds;
 
     @Transient
-    @Column(name = "HOBBY_NAME", nullable = false, length = 70)
-    private String hobbyName;
+    @JsonProperty("HOBBY_NAME")
+//    @Column(name = "HOBBY_NAME", nullable = false, length = 70)
+    private List<Integer> hobby;
 
 
     // 기본 생성자
@@ -56,20 +60,20 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    @OneToMany(mappedBy = "user") // UserHobby에서 user 필드와 매핑
-    private List<UserHobby> hobbies;
-
-    @OneToMany(mappedBy = "user") // UserBodyCondition에서 user 필드와 매핑
-    private List<UserBodyConditions> bodyConditions;
-
-    @OneToMany(mappedBy = "user")  // User와 Routine 사이의 관계를 매핑
-    private List<Routines> routines;
-
-    @OneToMany(mappedBy = "user")  // User와 Booking 사이의 관계를 매핑
+//    @OneToMany(mappedBy = "user") // UserHobby에서 user 필드와 매핑
+//    private List<UserHobby> hobbies;
+//
+//    @OneToMany(mappedBy = "user") // UserBodyCondition에서 user 필드와 매핑
+//    private List<UserBodyConditions> bodyConditions;
+//
+//    @OneToMany(mappedBy = "user")  // User와 Routine 사이의 관계를 매핑
+//    private List<Routines> routines;
+//
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL, orphanRemoval = true)  // User와 Booking 사이의 관계를 매핑
     private List<Booking> bookings;
 
-    public User(String userId) {
-    }
+//    public User(String userId) {
+//    }
 
 
     public String getUserId() {
@@ -128,19 +132,24 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    public String getBCondName() {
-        return bCondName;
+    public List<Integer> getBCondName() {
+        return bodyConditionIds;
     }
 
-    public void setBCondName(String bCondName) {
-        this.bCondName = bCondName;
+    public void setBCondName(List<Integer> bCondName) {
+        // null 체크 후 빈 리스트로 초기화
+        if (bCondName == null) {
+            this.bodyConditionIds = new ArrayList<>();
+        } else {
+            this.bodyConditionIds = bCondName;
+        }
     }
 
-    public String getHobbyName() {
-        return hobbyName;
+    public List<Integer> getHobbyName() {
+        return hobby;
     }
 
-    public void setHobbyName(String hobbyName) {
-        this.hobbyName = hobbyName;
+    public void setHobbyName(List<Integer> hobbyName) {
+        this.hobby = hobbyName;
     }
 }

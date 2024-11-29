@@ -14,9 +14,8 @@ public class Routines {
     @Column(name = "ROUTINE_ID", nullable = false, length = 20)
     private String routineId;
 
-    @ManyToOne
-    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = false)
-    private User user;  // USER_ID와 연결
+    @Column(name = "USER_ID", nullable = false)
+    private String userId;  // USER_ID와 연결
 
     @Column(name = "CONDITION", nullable = false, length = 20)
     private String condition;
@@ -31,9 +30,9 @@ public class Routines {
     public Routines() {}
 
     // 전체 필드를 받는 생성자
-    public Routines(String routineId, User user, String condition, String target, LocalDateTime createdAt) {
+    public Routines(String routineId, String userId, String condition, String target, LocalDateTime createdAt) {
         this.routineId = routineId;
-        this.user = user;
+        this.userId = userId;
         this.condition = condition;
         this.target = target;
         this.createdAt = createdAt;
@@ -52,12 +51,12 @@ public class Routines {
         this.routineId = routineId;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getCondition() {
@@ -84,8 +83,6 @@ public class Routines {
         this.createdAt = createdAt;
     }
 
-    public void setUserId(String userId) {
-    }
 
     // toString(), equals(), hashCode() 등의 메서드도 필요에 따라 추가할 수 있습니다.
 }

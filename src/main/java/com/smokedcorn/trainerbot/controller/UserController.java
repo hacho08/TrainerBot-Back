@@ -1,11 +1,16 @@
 package com.smokedcorn.trainerbot.controller;
 
-import com.smokedcorn.trainerbot.controller.dto.UserDetailsRequest;
+import com.smokedcorn.trainerbot.controller.dto.UserInfoDTO;
 import com.smokedcorn.trainerbot.domain.User;
 import com.smokedcorn.trainerbot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 //@CrossOrigin(origins = "http://localhost:8090")  // 요청하는 도메인 허용
 @RestController
@@ -20,13 +25,24 @@ public class UserController {
     }
 
     // POST: 사용자 이름 추가
-    @PostMapping
-    public ResponseEntity<User> addUser(@RequestBody User user) {
-        User createdUser = userService.addUser(user);  // 사용자 이름 저장
+    @PostMapping("/join")
+    public ResponseEntity<User> addUser(@RequestBody UserInfoDTO userInfoDTO) {
+        User user = new User();
+        user.setUserId(userInfoDTO.getUserId());
+        user.setUserName(userInfoDTO.getUserName());
+        user.setBirthYear(userInfoDTO.getBirthYear());
+        user.setGender(userInfoDTO.getGender());
+        user.setWorkoutExperience(userInfoDTO.getWorkoutExperience());
+        user.setGoal(userInfoDTO.getGoal());
+        user.setCreatedAt(userInfoDTO.getCreatedAt());
+        List<Integer>  bodyConditionIds = userInfoDTO.getBodyConditionIds();
+        List<Integer>  hobby = userInfoDTO.getHobby();
+        System.out.println("!!!!!!!!!!user: "+ user + " condition " + bodyConditionIds + " hobby " +hobby );
+        User createdUser = userService.addUser(user, bodyConditionIds , hobby);  // 사용자 이름 저장
         return ResponseEntity.ok(createdUser);  // 저장된 사용자 반환
     }
 
-    // GET: 사용자 이름 조회
+    // POST: 사용자 이름 조회
     @PostMapping("/login")
     public ResponseEntity<User> getUserById(@RequestBody String userId) {
 
@@ -55,21 +71,21 @@ public class UserController {
 //        }
 //    }
 
-    // POST: 사용자 상세 데이터 저장 (취미, 컨디션, 운동 목표)
-    @PostMapping("/{userId}/save-details")
-    public ResponseEntity<Void> saveUserDetails(
-            @PathVariable String userId,
-            @RequestBody UserDetailsRequest request) {
-
-        userService.saveUserDetails(
-                userId,
-                request.getConditionIndices(),
-                request.getHobbyIndices(),
-                request.getGoalIndices()
-        );
-
-        return ResponseEntity.ok().build();
-    }
+//    // POST: 사용자 상세 데이터 저장 (취미, 컨디션, 운동 목표)
+//    @PostMapping("/{userId}/save-details")
+//    public ResponseEntity<Void> saveUserDetails(
+//            @PathVariable String userId,
+//            @RequestBody UserDetailsRequest request) {
+//
+//        userService.saveUserDetails(
+//                userId,
+//                request.getConditionIndices(),
+//                request.getHobbyIndices(),
+//                request.getGoalIndices()
+//        );
+//
+//        return ResponseEntity.ok().build();
+//    }
 
     }
 

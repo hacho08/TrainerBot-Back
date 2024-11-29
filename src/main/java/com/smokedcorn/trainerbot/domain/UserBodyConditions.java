@@ -7,20 +7,20 @@ import jakarta.persistence.*;
 public class UserBodyConditions {
 
     @Id
+    @Column(name = "B_COND_ID")
     private String bCondId;
 
-    @ManyToOne
-    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = false)
-    private User user;
+    @Column(name = "USER_ID")
+    private String userId;
 
 
     // 기본 생성자
     public UserBodyConditions() {}
 
     // 전체 필드를 받는 생성자
-    public UserBodyConditions(String bCondId, User user) {
+    public UserBodyConditions(String bCondId, String userId) {
         this.bCondId = bCondId;
-        this.user = user;
+        this.userId = userId;
     }
 
     // Getter and Setter methods
@@ -32,12 +32,12 @@ public class UserBodyConditions {
         this.bCondId = bCondId;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
 
