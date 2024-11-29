@@ -5,8 +5,6 @@ import com.smokedcorn.trainerbot.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class BookingService {
 
@@ -17,10 +15,16 @@ public class BookingService {
         this.bookingRepository = bookingRepository;
     }
 
-    // 예약 조회
-    public Optional<Booking> getBookingById(String bookingId) {
-        return bookingRepository.findById(bookingId);
-    }
+//    // 예약 조회
+//    public Optional<Booking> getBookingById(String bookingId) {
+//        return bookingRepository.findById(bookingId);
+//    }
+
+//    // 로그인한 사용자의 예약 조회
+//    public List<Booking> getBookingById(String userId) {
+//        return bookingRepository.findByUserUserIdAndDeletedAtIsNull(userId);
+//    }
+
 
 //    // 사용자의 모든 예약 조회
 //    public List<Booking> getBookingsByUserId(String userId) {
