@@ -17,5 +17,6 @@ public interface BookingRepository extends JpaRepository<Booking, String> {
 //    // 예약이 삭제된 상태인지 확인 (deletedAt이 null이 아닌 경우)
 //    List<Booking> findByDeletedAtIsNotNull();
 
+//    List<Booking> createBooking(Booking booking);
 
 }

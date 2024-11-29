@@ -51,11 +51,11 @@ public class Routines {
         this.routineId = routineId;
     }
 
-    public String getUser() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUser(String userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
@@ -83,8 +83,6 @@ public class Routines {
         this.createdAt = createdAt;
     }
 
-    public void setUserId(String userId) {
-    }
 
     // toString(), equals(), hashCode() 등의 메서드도 필요에 따라 추가할 수 있습니다.
 }
