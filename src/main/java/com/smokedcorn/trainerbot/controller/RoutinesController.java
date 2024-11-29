@@ -1,12 +1,8 @@
 package com.smokedcorn.trainerbot.controller;
 
-import com.smokedcorn.trainerbot.domain.Routines;
 import com.smokedcorn.trainerbot.service.RoutinesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -20,12 +16,12 @@ public class RoutinesController {
         this.routinesService = routineService;
     }
 
-    @PostMapping
-    public ResponseEntity<Routines> createRoutine(
-            @RequestParam String userId,
-            @RequestParam String condition,
-            @RequestParam String target) {
-        Routines routine = routinesService.createRoutine(userId, condition, target);
-        return ResponseEntity.ok(routine); // 저장된 데이터를 반환
-    }
+//    @PostMapping
+//    public ResponseEntity<Routines> createRoutine(
+//            @RequestParam String userId,
+//            @RequestParam String condition,
+//            @RequestParam String target) {
+//        Routines routine = routinesService.createRoutine(userId, condition, target);
+//        return ResponseEntity.ok(routine); // 저장된 데이터를 반환
+//    }
 }

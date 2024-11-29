@@ -8,24 +8,32 @@ import java.util.Date;
 public class Booking {
 
     @Id
+    @Column(name = "BOOKING_ID", nullable = false, length = 20)
     private String bookingId;
 
-    @ManyToOne
-    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID", nullable = false)
-    private User user;  // USER_ID와 연결 (User 엔티티와 다대일 관계)
-
+    @Column(name = "BOOKING_DATE")
     private Date bookingDate;
+
+    @Column(name = "DELETED_AT")
     private Date deletedAt;
+
+    @Column(name = "CREATED_AT")
     private Date createdAt;
+
+    @Column(name = "UPDATED_AT")
     private Date updatedAt;
+
+
+    @Column(name = "USER_ID", nullable = false)
+    private String userId;  // USER_ID와 연결 (User 엔티티와 다대일 관계)
+
 
     // 기본 생성자
     public Booking() {}
 
     // 전체 필드를 받는 생성자
-    public Booking(String bookingId, User user, Date bookingDate, Date deletedAt, Date createdAt, Date updatedAt) {
+    public Booking(String bookingId, Date bookingDate, Date deletedAt, Date createdAt, Date updatedAt) {
         this.bookingId = bookingId;
-        this.user = user;
         this.bookingDate = bookingDate;
         this.deletedAt = deletedAt;
         this.createdAt = createdAt;
@@ -41,12 +49,12 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(String user) {
+        this.userId = user;
     }
 
     public Date getBookingDate() {
