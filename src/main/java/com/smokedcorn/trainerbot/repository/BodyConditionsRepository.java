@@ -9,5 +9,5 @@ public interface BodyConditionsRepository extends JpaRepository<BodyConditions, 
 
     // 추가적인 쿼리 메서드를 정의할 수 있습니다.
     // 예: 특정 조건명으로 BodyCondition 찾기
-    BodyConditions findByBCondName(String bCondName);
+//    BodyConditions findByBCondName(String bCondName);
 }

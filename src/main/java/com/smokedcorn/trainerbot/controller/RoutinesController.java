@@ -20,12 +20,12 @@ public class RoutinesController {
         this.routinesService = routineService;
     }
 
-    @PostMapping
-    public ResponseEntity<Routines> createRoutine(
-            @RequestParam String userId,
-            @RequestParam String condition,
-            @RequestParam String target) {
-        Routines routine = routinesService.createRoutine(userId, condition, target);
-        return ResponseEntity.ok(routine); // 저장된 데이터를 반환
-    }
+//    @PostMapping
+//    public ResponseEntity<Routines> createRoutine(
+//            @RequestParam String userId,
+//            @RequestParam String condition,
+//            @RequestParam String target) {
+//        Routines routine = routinesService.createRoutine(userId, condition, target);
+//        return ResponseEntity.ok(routine); // 저장된 데이터를 반환
+//    }
 }

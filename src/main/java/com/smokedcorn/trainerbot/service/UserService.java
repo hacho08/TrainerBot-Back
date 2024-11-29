@@ -31,44 +31,44 @@ public class UserService {
     }
 
     // 단일 사용자의 상세 정보를 가져오는 메서드 (bCondName, hobbyName 최대 2개 처리)
-    public User getUserWithDetails(String userId) {
-        List<Object[]> results = userRepository.findUserWithDetails(userId);
-        User user = null;
-
-        List<String> conditions = new ArrayList<>(); // 최대 2개의 컨디션 이름 저장
-        List<String> hobbies = new ArrayList<>();    // 최대 2개의 취미 이름 저장
-
-        for (Object[] result : results) {
-            if (user == null) {
-                user = (User) result[0]; // 첫 번째 User 객체 가져오기
-            }
-
-            // Body Condition Name
-            String bCondName = (String) result[1];
-            if (bCondName != null && conditions.size() < 2 && !conditions.contains(bCondName)) {
-                conditions.add(bCondName);
-            }
-
-            // Hobby Name
-            String hobbyName = (String) result[2];
-            if (hobbyName != null && hobbies.size() < 2 && !hobbies.contains(hobbyName)) {
-                hobbies.add(hobbyName);
-            }
-
-            // 최대 두 개씩만 처리
-            if (conditions.size() >= 2 && hobbies.size() >= 2) {
-                break;
-            }
-        }
-
-        // Transient 필드 설정
-        if (user != null) {
-            user.setBCondName(String.join(", ", conditions)); // 여러 컨디션 이름을 콤마로 연결
-            user.setHobbyName(String.join(", ", hobbies));    // 여러 취미 이름을 콤마로 연결
-        }
-
-        return user;
-    }
+//    public User getUserWithDetails(String userId) {
+//        List<Object[]> results = userRepository.findUserWithDetails(userId);
+//        User user = null;
+//
+//        List<String> conditions = new ArrayList<>(); // 최대 2개의 컨디션 이름 저장
+//        List<String> hobbies = new ArrayList<>();    // 최대 2개의 취미 이름 저장
+//
+//        for (Object[] result : results) {
+//            if (user == null) {
+//                user = (User) result[0]; // 첫 번째 User 객체 가져오기
+//            }
+//
+//            // Body Condition Name
+//            String bCondName = (String) result[1];
+//            if (bCondName != null && conditions.size() < 2 && !conditions.contains(bCondName)) {
+//                conditions.add(bCondName);
+//            }
+//
+//            // Hobby Name
+//            String hobbyName = (String) result[2];
+//            if (hobbyName != null && hobbies.size() < 2 && !hobbies.contains(hobbyName)) {
+//                hobbies.add(hobbyName);
+//            }
+//
+//            // 최대 두 개씩만 처리
+//            if (conditions.size() >= 2 && hobbies.size() >= 2) {
+//                break;
+//            }
+//        }
+//
+//        // Transient 필드 설정
+//        if (user != null) {
+//            user.setBCondName(String.join(", ", conditions)); // 여러 컨디션 이름을 콤마로 연결
+//            user.setHobbyName(String.join(", ", hobbies));    // 여러 취미 이름을 콤마로 연결
+//        }
+//
+//        return user;
+//    }
 
     public void saveUserDetails(String userId, List<Integer> conditionIndices, List<Integer> hobbyIndices, List<Integer> goalIndices) {
         // 인덱스를 텍스트로 변환

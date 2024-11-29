@@ -45,15 +45,15 @@ public class UserController {
     }
 
     // GET: 단일 사용자의 상세 정보 조회 (bCondName, hobbyName 포함)
-    @PostMapping("/join")
-    public ResponseEntity<User> getUserDetails(@RequestBody String userId) {
-        User user = userService.getUserWithDetails(userId); // UserService에서 getUserWithDetails 호출
-        if (user != null) {
-            return ResponseEntity.ok(user); // 사용자 데이터 반환
-        } else {
-            return ResponseEntity.notFound().build(); // 404 Not Found 반환
-        }
-    }
+//    @PostMapping("/join")
+//    public ResponseEntity<User> getUserDetails(@RequestBody String userId) {
+//        User user = userService.getUserWithDetails(userId); // UserService에서 getUserWithDetails 호출
+//        if (user != null) {
+//            return ResponseEntity.ok(user); // 사용자 데이터 반환
+//        } else {
+//            return ResponseEntity.notFound().build(); // 404 Not Found 반환
+//        }
+//    }
 
     // POST: 사용자 상세 데이터 저장 (취미, 컨디션, 운동 목표)
     @PostMapping("/{userId}/save-details")

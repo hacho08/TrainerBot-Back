@@ -24,9 +24,9 @@ public class BookingService {
     }
 
     // 사용자의 모든 예약 조회
-    public List<Booking> getBookingsByUserId(String userId) {
-        return bookingRepository.findByUserUserId(userId);
-    }
+//    public List<Booking> getBookingsByUserId(String userId) {
+//        return bookingRepository.findByUserUserId(userId);
+//    }
 
     // 예약 추가
     public Booking createBooking(Booking booking) {

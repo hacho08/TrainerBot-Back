@@ -24,9 +24,9 @@ public class WorkoutDetailService {
     }
 
     // 특정 루틴에 속한 운동 세부 사항 조회
-    public List<WorkoutDetail> getWorkoutDetailsByRoutineId(String routineId) {
-        return workoutDetailRepository.findByRoutineRoutineId(routineId);
-    }
+//    public List<WorkoutDetail> getWorkoutDetailsByRoutineId(String routineId) {
+//        return workoutDetailRepository.findByRoutineRoutineId(routineId);
+//    }
 
     // 운동 세부 사항 추가
     public WorkoutDetail createWorkoutDetail(WorkoutDetail workoutDetail) {
