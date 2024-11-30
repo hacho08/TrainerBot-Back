@@ -15,7 +15,7 @@ public class BookingService {
 
         this.bookingRepository = bookingRepository;
     }
-    
+
     // 로그인한 사용자의 예약 조회
     public List<Booking> getBookingById(String userId) {
         return bookingRepository.findByUserUserIdAndDeletedAtIsNull(userId);
