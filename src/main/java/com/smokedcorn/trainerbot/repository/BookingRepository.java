@@ -1,20 +1,25 @@
 package com.smokedcorn.trainerbot.repository;
 
 import com.smokedcorn.trainerbot.domain.Booking;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
 public interface BookingRepository extends JpaRepository<Booking, String> {
 
-//    // 특정 사용자의 예약을 조회
-//    List<Booking> findByUserUserId(String userId);
-//
-//    // 특정 날짜에 예약된 목록 조회
-//    List<Booking> findByBookingDate(Date bookingDate);
-//
-//    // 특정 예약 ID로 예약 정보 조회
-//    Optional<Booking> findByBookingId(String bookingId);
-//
-//    // 예약이 삭제된 상태인지 확인 (deletedAt이 null이 아닌 경우)
-//    List<Booking> findByDeletedAtIsNotNull();
+    // 삭제되지 않은 특정 사용자의 예약 조회
+    @Query("SELECT b FROM Booking b WHERE b.userId = :userId AND b.deletedAt IS NULL")
+    List<Booking> findByUserUserIdAndDeletedAtIsNull(@Param("userId") String userId);
 
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE Booking b SET b.deletedAt = CURRENT_TIMESTAMP WHERE b.userId = :userId AND b.bookingId = :bookingId AND b.deletedAt IS NULL")
+    void deleteBookingByUserId(@Param("userId") String userId);
 }

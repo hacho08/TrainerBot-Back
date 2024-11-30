@@ -1,15 +1,25 @@
 package com.smokedcorn.trainerbot.domain;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name="BOOKING")
 public class Booking {
 
     @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "BOOKING_ID", nullable = false, length = 20)
-    private String bookingId;
+    private String bookingId = generateBookingId();
+
+    private String generateBookingId() {
+        return UUID.randomUUID().toString().replace("-", "").substring(0, 20);
+    }
 
     @Column(name = "BOOKING_DATE")
     private Date bookingDate;
@@ -17,7 +27,7 @@ public class Booking {
     @Column(name = "DELETED_AT")
     private Date deletedAt;
 
-    @Column(name = "CREATED_AT")
+    @Column(name = "CREATED_AT", nullable = false)
     private Date createdAt;
 
     @Column(name = "UPDATED_AT")
@@ -53,8 +63,8 @@ public class Booking {
         return userId;
     }
 
-    public void setUserId(String user) {
-        this.userId = user;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public Date getBookingDate() {
