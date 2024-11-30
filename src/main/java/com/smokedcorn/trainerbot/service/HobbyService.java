@@ -1,8 +1,12 @@
 package com.smokedcorn.trainerbot.service;
 
+import com.smokedcorn.trainerbot.domain.Hobby;
+import com.smokedcorn.trainerbot.domain.UserHobby;
 import com.smokedcorn.trainerbot.repository.HobbyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class HobbyService {
@@ -14,10 +18,10 @@ public class HobbyService {
         this.hobbyRepository = hobbyRepository;
     }
 
-//    // 모든 운동 취미 조회
-//    public List<Hobby> getAllHobbies() {
-//        return hobbyRepository.findAll();
-//    }
+    // 모든 운동 취미 조회
+    public List<UserHobby> getAllHobbies(String userId) {
+        return hobbyRepository.getUserHobbyByUserId(userId);
+    }
 //
 //    // 운동 취미 추가
 //    public Hobby addHobby(String hobbyName) {

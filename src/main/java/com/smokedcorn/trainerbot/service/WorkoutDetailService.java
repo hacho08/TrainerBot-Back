@@ -19,9 +19,9 @@ public class WorkoutDetailService {
     }
 
     // 운동 세부 사항 조회
-    public Optional<WorkoutDetail> getWorkoutDetailById(String workoutId) {
-        return workoutDetailRepository.findById(workoutId);
-    }
+//    public Optional<WorkoutDetail> getWorkoutDetailById(String workoutId) {
+//        return workoutDetailRepository.findById(workoutId);
+//    }
 
     // 특정 루틴에 속한 운동 세부 사항 조회
 //    public List<WorkoutDetail> getWorkoutDetailsByRoutineId(String routineId) {
@@ -29,18 +29,18 @@ public class WorkoutDetailService {
 //    }
 
     // 운동 세부 사항 추가
-    public WorkoutDetail createWorkoutDetail(WorkoutDetail workoutDetail) {
-        return workoutDetailRepository.save(workoutDetail);
-    }
-
-    // 운동 세부 사항 수정
-    public WorkoutDetail updateWorkoutDetail(WorkoutDetail workoutDetail) {
-        return workoutDetailRepository.save(workoutDetail);
-    }
+//    public WorkoutDetail createWorkoutDetail(WorkoutDetail workoutDetail) {
+//        return workoutDetailRepository.save(workoutDetail);
+//    }
+//
+//    // 운동 세부 사항 수정
+//    public WorkoutDetail updateWorkoutDetail(WorkoutDetail workoutDetail) {
+//        return workoutDetailRepository.save(workoutDetail);
+//    }
 
     // 운동 세부 사항 삭제
-    public void deleteWorkoutDetail(String workoutId) {
-        workoutDetailRepository.deleteById(workoutId);
-    }
+//    public void deleteWorkoutDetail(String workoutId) {
+//        workoutDetailRepository.deleteById(workoutId);
+//    }
 }
 

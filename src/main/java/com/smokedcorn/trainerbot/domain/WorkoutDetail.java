@@ -8,9 +8,7 @@ public class WorkoutDetail {
     @Id
     private String workoutId;
 
-    @ManyToOne
-    @JoinColumn(name = "ROUTINE_ID", referencedColumnName = "ROUTINE_ID", nullable = false)
-    private Routines routine;  // ROUTINE_ID와 연결
+    private String routineId;  // ROUTINE_ID와 연결
 
     private String workoutName;
     private Integer setCount;
@@ -23,9 +21,9 @@ public class WorkoutDetail {
     public WorkoutDetail() {}
 
     // 전체 필드를 받는 생성자
-    public WorkoutDetail(String workoutId, Routines routines, String workoutName, Integer setCount, Integer restTime, Integer isCount, Integer workoutCount, Integer workoutOrder) {
+    public WorkoutDetail(String workoutId, String routineId, String workoutName, Integer setCount, Integer restTime, Integer isCount, Integer workoutCount, Integer workoutOrder) {
         this.workoutId = workoutId;
-        this.routine = routines;
+        this.routineId = routineId;
         this.workoutName = workoutName;
         this.setCount = setCount;
         this.restTime = restTime;
@@ -41,14 +39,6 @@ public class WorkoutDetail {
 
     public void setWorkoutId(String workoutId) {
         this.workoutId = workoutId;
-    }
-
-    public Routines getRoutine() {
-        return routine;
-    }
-
-    public void setRoutine(Routines routine) {
-        this.routine = routine;
     }
 
     public String getWorkoutName() {
@@ -99,6 +89,13 @@ public class WorkoutDetail {
         this.workoutOrder = workoutOrder;
     }
 
-    // toString(), equals(), hashCode() 등의 메서드도 필요에 따라 추가할 수 있습니다.
+    public String getRoutineId() {
+        return routineId;
+    }
+
+    public void setRoutineId(String routineId) {
+        this.routineId = routineId;
+    }
+// toString(), equals(), hashCode() 등의 메서드도 필요에 따라 추가할 수 있습니다.
 }
 
