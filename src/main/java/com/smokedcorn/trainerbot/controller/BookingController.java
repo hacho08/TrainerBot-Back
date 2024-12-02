@@ -68,14 +68,12 @@ public class BookingController {
     public ResponseEntity<String> deleteUserBooking(@RequestBody Map<String, String> request) {
         try {
             String bookingId = request.get("id");
-            String userId = request.get("userId");
-
-            if (bookingId == null || userId == null) {
+            if (bookingId == null || bookingId.isEmpty()) {
                 return ResponseEntity.badRequest()
-                        .body("Both booking ID and user ID are required");
+                        .body("Booking ID is required");
             }
 
-            bookingService.deleteBooking(userId, bookingId);
+            bookingService.deleteBooking(bookingId);
             return ResponseEntity.ok("Reservation deleted successfully");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -83,6 +81,8 @@ public class BookingController {
         }
     }
 }
+
+
 
 
 

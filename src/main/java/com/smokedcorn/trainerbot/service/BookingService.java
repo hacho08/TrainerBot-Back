@@ -27,8 +27,8 @@ public class BookingService {
     }
 
 
-    // 예약 삭제
-    public void deleteBooking(String userId, String bookingId) {
-        bookingRepository.softDeleteBooking(userId, bookingId);
+    // 삭제 메서드 수정
+    public void deleteBooking(String bookingId) {
+        bookingRepository.softDeleteBooking(bookingId);
     }
 }

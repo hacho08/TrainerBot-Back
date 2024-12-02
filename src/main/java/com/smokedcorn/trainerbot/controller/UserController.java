@@ -4,13 +4,16 @@ import com.smokedcorn.trainerbot.controller.dto.UserInfoDTO;
 import com.smokedcorn.trainerbot.domain.User;
 import com.smokedcorn.trainerbot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 //@CrossOrigin(origins = "http://localhost:8090")  // 요청하는 도메인 허용
 @RestController
@@ -59,6 +62,30 @@ public class UserController {
         }
 
     }
+
+    // UserController.java
+    @PostMapping("/getUserInfo")
+    public ResponseEntity<?> getUserInfo(@RequestBody Map<String, String> request) {
+        try {
+            String userId = request.get("userId");
+            if (userId == null || userId.isEmpty()) {
+                return ResponseEntity.badRequest().body("User ID is required");
+            }
+
+            User user = userService.getUserById(userId);
+            if (user != null) {
+                Map<String, String> response = new HashMap<>();
+                response.put("userName", user.getUserName());
+                return ResponseEntity.ok(response);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error retrieving user info: " + e.getMessage());
+        }
+    }
+
 
     // GET: 단일 사용자의 상세 정보 조회 (bCondName, hobbyName 포함)
 //    @PostMapping("/join")
