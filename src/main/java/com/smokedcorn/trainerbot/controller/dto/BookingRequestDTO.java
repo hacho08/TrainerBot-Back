@@ -5,6 +5,7 @@ import java.util.Date;
 public class BookingRequestDTO {
     private String userId;
     private Date bookingDate;
+    private String bookingId;
 
     public String getUserId() {
         return userId;
@@ -22,4 +23,11 @@ public class BookingRequestDTO {
         this.bookingDate = bookingDate;
     }
 
+    public String getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(String bookingId) {
+        this.bookingId = bookingId;
+    }
 }
