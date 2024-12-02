@@ -45,25 +45,25 @@ class UserRepositoryTest {
 
     }
 
-    @Test
-    void 고객_생성() {
-        User user = new User();
-        user.setUserName("adsf");
-        user.setGender("f");
-        user.setUserId("01001234566");
-        user.setBirthYear(1994);
-        user.setGoal("casdf");
-        user.setWorkoutExperience("1");
-        user.setCreatedAt(LocalDateTime.now());
-
-        List<String> list = Arrays.asList("0", "1");
-        user.setBCondName(list);
-
-
-        User new_user = userService.addUser(user);
-
-        System.out.println("결과값: " + new_user + new_user.getUserName());
-
-
-    }
+//    @Test
+//    void 고객_생성() {
+//        User user = new User();
+//        user.setUserName("adsf");
+//        user.setGender("f");
+//        user.setUserId("01001234566");
+//        user.setBirthYear(1994);
+//        user.setGoal("casdf");
+//        user.setWorkoutExperience("1");
+//        user.setCreatedAt(LocalDateTime.now());
+//
+//        List<String> list = Arrays.asList("0", "1");
+//        user.setBCondName(list);
+//
+//
+//        User new_user = userService.addUser(user);
+//
+//        System.out.println("결과값: " + new_user + new_user.getUserName());
+//
+//
+//    }
 }

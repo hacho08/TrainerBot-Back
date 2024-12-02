@@ -90,13 +90,10 @@ public class UserService {
 //        }
 //
 //        // Transient 필드 설정
-////        if (user != null) {
-////            user.setBCondName(String.join(", ", conditions)); // 여러 컨디션 이름을 콤마로 연결
-////            user.setHobbyName(String.join(", ", hobbies));    // 여러 취미 이름을 콤마로 연결
-////        }
 //
 //        return user;
 //    }
+
 
 //    public void saveUserDetails(String userId, List<Integer> conditionIndices, List<Integer> hobbyIndices, List<Integer> goalIndices) {
 //        // 인덱스를 텍스트로 변환

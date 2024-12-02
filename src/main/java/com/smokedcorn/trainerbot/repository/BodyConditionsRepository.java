@@ -10,10 +10,10 @@ import org.springframework.data.repository.query.Param;
 public interface BodyConditionsRepository extends JpaRepository<UserBodyConditions, String> {
     // 기본적인 CRUD 작업은 JpaRepository가 자동으로 제공합니다.
     // 예: findAll(), findById(), save(), delete() 등
-//    BodyConditions findByBCondName(String bCondName);
 
     @Modifying
     @Transactional
     @Query("INSERT INTO UserBodyConditions (userId, bCondId) VALUES (:userId, :bCondId)")
     void saveBCond(@Param("userId") String userId, @Param("bCondId") String bCondId);
+
 }

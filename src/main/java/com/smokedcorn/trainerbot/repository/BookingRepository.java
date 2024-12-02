@@ -13,7 +13,6 @@ import java.util.List;
 @Repository
 public interface BookingRepository extends JpaRepository<Booking, String> {
 
-
     // 삭제되지 않은 특정 사용자의 예약 조회
     @Query("SELECT b FROM Booking b WHERE b.userId = :userId AND b.deletedAt IS NULL")
     List<Booking> findByUserUserIdAndDeletedAtIsNull(@Param("userId") String userId);

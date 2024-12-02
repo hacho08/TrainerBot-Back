@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 
 @Entity
@@ -12,7 +13,11 @@ public class Routines {
 
     @Id
     @Column(name = "ROUTINE_ID", nullable = false, length = 20)
-    private String routineId;
+    private String routineId = generateRoutineId();
+
+    private String generateRoutineId() {
+        return UUID.randomUUID().toString().replace("-", "").substring(0, 20);
+    }
 
     @Column(name = "USER_ID", nullable = false)
     private String userId;  // USER_ID와 연결
@@ -37,9 +42,6 @@ public class Routines {
         this.target = target;
         this.createdAt = createdAt;
     }
-
-    @OneToMany(mappedBy = "routine")  // WorkoutDetail에서 routine 필드와 매핑
-    private List<WorkoutDetail> workoutDetails;
 
 
     // Getter and Setter methods
