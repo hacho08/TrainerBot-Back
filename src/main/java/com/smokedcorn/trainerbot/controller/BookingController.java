@@ -67,7 +67,9 @@ public class BookingController {
     @DeleteMapping("/deleteReservations")
     public ResponseEntity<String> deleteUserBooking(@RequestBody Map<String, String> request) {
         try {
+            System.out.println(request);
             String bookingId = request.get("id");
+
             if (bookingId == null || bookingId.isEmpty()) {
                 return ResponseEntity.badRequest()
                         .body("Booking ID is required");
