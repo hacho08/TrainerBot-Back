@@ -27,17 +27,8 @@ public class BookingService {
     }
 
 
-    // 예약 삭제
-    public void deleteBooking(String userId, String bookingId) {
-        // 예약이 존재하는지 확인
-        List<Booking> booking = bookingRepository.findByUserUserIdAndDeletedAtIsNull(userId);
-
-        if (booking != null) {
-            // 예약이 존재하면 삭제된 상태로 업데이트 (deletedAt 필드 설정)
-            bookingRepository.deleteBookingByUserId(userId);
-        } else {
-            throw new RuntimeException("Reservation not found or already deleted.");
-        }
+    // 삭제 메서드 수정
+    public void deleteBooking(String bookingId) {
+        bookingRepository.softDeleteBooking(bookingId);
     }
-
 }

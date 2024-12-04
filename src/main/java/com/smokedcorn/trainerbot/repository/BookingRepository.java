@@ -18,8 +18,9 @@ public interface BookingRepository extends JpaRepository<Booking, String> {
     List<Booking> findByUserUserIdAndDeletedAtIsNull(@Param("userId") String userId);
 
 
+    // bookingId로만 soft delete 수행
     @Modifying
     @Transactional
-    @Query("UPDATE Booking b SET b.deletedAt = CURRENT_TIMESTAMP WHERE b.userId = :userId AND b.bookingId = :bookingId AND b.deletedAt IS NULL")
-    void deleteBookingByUserId(@Param("userId") String userId);
+    @Query("UPDATE Booking b SET b.deletedAt = CURRENT_TIMESTAMP WHERE b.bookingId = :bookingId AND b.deletedAt IS NULL")
+    void softDeleteBooking(@Param("bookingId") String bookingId);
 }

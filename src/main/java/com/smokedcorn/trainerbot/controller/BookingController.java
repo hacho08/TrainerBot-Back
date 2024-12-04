@@ -7,9 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 //@CrossOrigin(origins = "http://localhost:8090")  // 요청하는 도메인 허용
@@ -46,30 +46,45 @@ public class BookingController {
 
     // 로그인한 사용자의 예약 조회
     @PostMapping("/getReservations")
-    public List<Booking> getBookingById(Principal principal) {
-        // 현재 로그인한 사용자의 ID를 가져옵니다.
-        String userId = principal.getName();
+    public ResponseEntity<?> getBookingByUserId(@RequestBody BookingRequestDTO bookingRequestDTO) {
+        try {
+            String userId = bookingRequestDTO.getUserId();
+            if (userId == null || userId.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body("User ID is required");
+            }
 
-        // 서비스 계층 호출하여 예약 정보 조회
-        return bookingService.getBookingById(userId);
+            List<Booking> bookings = bookingService.getBookingById(userId);
+            return ResponseEntity.ok(bookings);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error retrieving reservations: " + e.getMessage());
+        }
     }
 
 
     // 예약 삭제
     @DeleteMapping("/deleteReservations")
-    public ResponseEntity<String> deleteUserBooking(Principal principal, @RequestBody String bookingId) {
-        String userId = principal.getName();
+    public ResponseEntity<String> deleteUserBooking(@RequestBody Map<String, String> request) {
         try {
-            bookingService.deleteBooking(userId, bookingId);
-            return ResponseEntity.ok("Reservation deleted successfully.");
+            System.out.println(request);
+            String bookingId = request.get("id");
+
+            if (bookingId == null || bookingId.isEmpty()) {
+                return ResponseEntity.badRequest()
+                        .body("Booking ID is required");
+            }
+
+            bookingService.deleteBooking(bookingId);
+            return ResponseEntity.ok("Reservation deleted successfully");
         } catch (Exception e) {
-            return ResponseEntity.status(400).body("Failed to delete reservation: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Failed to delete reservation: " + e.getMessage());
         }
     }
-
-
-
-
 }
+
+
+
 
 
