@@ -24,6 +24,8 @@ public class UserHobby {
     }
 
     // Getter and Setter methods
+
+
     public String getHobby() {
         return hobby;
     }
